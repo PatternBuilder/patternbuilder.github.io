@@ -1,20 +1,17 @@
-# metalsmith-starter
+# Welcome to MkDocs
 
+For full documentation visit [mkdocs.org](http://mkdocs.org).
 
-## Install dependencies
+## Commands
 
-`$ npm install`
+* `mkdocs new [dir-name]` - Create a new project.
+* `mkdocs serve` - Start the live-reloading docs server.
+* `mkdocs build` - Build the documentation site.
+* `mkdocs help` - Print this help message.
 
-## One time build of docs
+## Project layout
 
-`$ npm run build`
-
-## Build docs, serve, watch for changes
-
-`$ npm run serve`
-
-Docs will be viewable at [http://localhost:8080](http://localhost:8080)
-
-
-
-
+    mkdocs.yml    # The configuration file.
+    docs/
+        index.md  # The documentation homepage.
+        ...       # Other markdown pages, images and other files.

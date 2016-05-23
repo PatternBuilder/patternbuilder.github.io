@@ -36,8 +36,8 @@ title: Pattern Builder
 
 
 Install Options: (NEEDS CLEANUP)
-install patternbuilder module, composer install in the patternbuilder module folder + install composer_manager 
+install patternbuilder module, composer install in the patternbuilder module folder + install composer_manager
 
-OR 
+OR
 
 install patternbuilder module, clone patternbuilder-lib-php into libraries and then composer install from there
