@@ -5,14 +5,15 @@ title: Using Pattern Builder
 ## Various Scenarios of using pattern builder module
 
 ### Add a Pattern Field to a Content Type
-  1. Create a new content type or use an existing one.
-  1. Add a paragraphs field with patterns enabled.
-        1. Widget: "Embedded Patterns" or "Embedded Patterns with Previewer" (requires patternbuilder_previewer module).
-            1. Limit the pattern selection by type ("Pattern", "Components"). These need to be defined in hook_patternbuilder_pattern_types().
-            1. Any non-pattern paragraph needs to be explicitly selected in the list of "Allowed paragraph bundles"
-        1. Display Formatter: "Patternbuilder rendered items"
-            1. Select display mode used to render the embed paragraphs. Defaults to "Full". For Patterns, the formatted values of the paragraph field is sent to the TWIG templates for display.
-  1. Create content with Patterns!
+
+1. Create a new content type or use an existing one.
+1. Add a paragraphs field with patterns enabled.
+    1. Widget: "Embedded Patterns" or "Embedded Patterns with Previewer" (requires patternbuilder_previewer module).
+        1. Limit the pattern selection by type ("Pattern", "Components"). These need to be defined in hook_patternbuilder_pattern_types().
+        1. Any non-pattern paragraph needs to be explicitly selected in the list of "Allowed paragraph bundles"
+    1. Display Formatter: "Patternbuilder rendered items"
+        1. Select display mode used to render the embed paragraphs. Defaults to "Full". For Patterns, the formatted values of the paragraph field is sent to the TWIG templates for display.
+1. Create content with Patterns!
 
 ### Choose a method
 
@@ -40,9 +41,8 @@ title: Using Pattern Builder
     1. (TODO: Pending development) Associate the paragraph bundle with a JSON Schema.
     1. Add a field to the paragraph bundle.
         1. Configure the section "Pattern Builder".
-        1. Required: Set the "Property name"
+        1. Required: Set the "Property name" of the JSON Schema property that maps to this field.
 
- **
 
 ### Other things to note
 
