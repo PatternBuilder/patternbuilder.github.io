@@ -67,7 +67,7 @@ title: Pattern Builder Importer
 
 1. Where
     1. [https://www.drupal.org/project/patternbuilder](https://www.drupal.org/project/patternbuilder)
-    2. [https://web-dev-gitlab03.devlab.redhat.com/it-marketing/webdrupal](https://web-dev-gitlab03.devlab.redhat.com/it-marketing/webdrupal)
+    2. [https://github.com/PatternBuilder/pattern-builder-lib-php](https://github.com/PatternBuilder/pattern-builder-lib-php)
 
 2. Supported Extensions
 
