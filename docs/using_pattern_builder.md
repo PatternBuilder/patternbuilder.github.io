@@ -15,6 +15,7 @@ title: Using Pattern Builder
         1. Select display mode used to render the embed paragraphs. Defaults to "Full". For Patterns, the formatted values of the paragraph field is sent to the TWIG templates for display.
 1. Create content with Patterns!
 
+
 ### Choose a method
 
 1. The whole kit AND kaboodle! (recommended)  Use pattern builder importer to pull in your patterns and schemas from your component library
@@ -25,7 +26,7 @@ title: Using Pattern Builder
         1. From the command line, run "drush pbi".
         1. (TODO) From the UI: Pending development.
 
-2. Hybrid:  Map existing drupal fields to WebRH templates
+2. Hybrid:  Map existing Drupal fields to Schema properties
     1. Allows for developers to map data (even from external sources) to the json/twig data.
     1. Good for existing content types.
     1. Not good for complex field setups since hand mapping takes time and is error prone.

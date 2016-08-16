@@ -1,14 +1,20 @@
 ---
-title: Pattern Builder Library
+title: Pattern Builder PHP Library
 ---
 
-1. Where
-    1. Patternbuilderproject
-        1. (No code here yet)
+## Pattern Builder PHP Library
 
-2. What is it?
-    1. The library is a Symfony based PHP library that contains classes for setting data in the appropriate object layout for consumption and rendering by the Twig layer.
-    2. Less jargon version: Lets you take data from anywhere and sets it up to work with FTS.
+### What is it?
 
-3. How
-    1.  Tech setup...
+1. The library is a Symfony based PHP library that contains classes for setting data in the appropriate object layout for consumption and rendering by the Twig layer.
+1. Less jargon version: It lets you take data from anywhere and sets it up to work with Twig rendering.
+
+
+### Where
+
+1. GitHub: [https://github.com/PatternBuilder/pattern-builder-lib-php](https://github.com/PatternBuilder/pattern-builder-lib-php)
+
+
+### How
+
+1.  Tech setup: TODO

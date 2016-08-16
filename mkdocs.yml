@@ -2,9 +2,9 @@ site_name: Pattern Builder
 
 pages:
 - Home: index.md
-- Pattern Builder Module: pattern_builder.md
-- Pattern Builder Library: pattern_builder_library.md
-- Pattern Builder Importer: pattern_builder_importer.md
-- Using Pattern Builder: using_pattern_builder.md
+- PHP Library: pattern_builder_library.md
+- Drupal Module: pattern_builder_module.md
+- Drupal Schema Importer: pattern_builder_importer.md
+- Drupal Usage: using_pattern_builder.md
 
 theme: readthedocs
