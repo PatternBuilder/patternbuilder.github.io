@@ -90,6 +90,8 @@
             
                 <li class="toctree-l3"><a href="#various-scenarios-of-using-pattern-builder-module">Various Scenarios of using pattern builder module</a></li>
                 
+                    <li><a class="toctree-l4" href="#add-a-pattern-field-to-a-content-type">Add a Pattern Field to a Content Type</a></li>
+                
                     <li><a class="toctree-l4" href="#choose-a-method">Choose a method</a></li>
                 
                     <li><a class="toctree-l4" href="#other-things-to-note">Other things to note</a></li>
@@ -133,49 +135,67 @@
             <div class="section">
               
                 <h2 id="various-scenarios-of-using-pattern-builder-module">Various Scenarios of using pattern builder module</h2>
+<h3 id="add-a-pattern-field-to-a-content-type">Add a Pattern Field to a Content Type</h3>
+<ol>
+<li>Create a new content type or use an existing one.</li>
+<li>Add a paragraphs field with patterns enabled.<ol>
+<li>Widget: "Embedded Patterns" or "Embedded Patterns with Previewer" (requires patternbuilder_previewer module).<ol>
+<li>Limit the pattern selection by type ("Pattern", "Components"). These need to be defined in hook_patternbuilder_pattern_types().</li>
+<li>Any non-pattern paragraph needs to be explicitly selected in the list of "Allowed paragraph bundles"</li>
+</ol>
+</li>
+<li>Display Formatter: "Patternbuilder rendered items"<ol>
+<li>Select display mode used to render the embed paragraphs. Defaults to "Full". For Patterns, the formatted values of the paragraph field is sent to the TWIG templates for display.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Create content with Patterns!</li>
+</ol>
 <h3 id="choose-a-method">Choose a method</h3>
 <ol>
 <li>
 <p>The whole kit AND kaboodle! (recommended)  Use pattern builder importer to pull in your patterns and schemas from your component library</p>
 <ol>
-<li>Example: our FTS content type</li>
-<li>Create a new content type with basic Drupal fields like title, taxonomy terms, etc</li>
-<li>
-<p>Add patterns to your content type.</p>
-<ol>
-<li>For example, our FTS content type has one hard-coded hero pattern, and every other pattern is optional<ol>
-<li>Field_pattern_components<ol>
-<li>Allowed paragraph bundle types: patterns</li>
+<li>Build a content type with a Pattern field (see above).</li>
+<li>Configure the directories for the JSON schemas and TWIG templates at "admin/config/content/patternbuilder"</li>
+<li>Enable the patternbuilder_importer module.</li>
+<li>Import the Pattern Schemas to Paragraph bundles:<ol>
+<li>From the command line, run "drush pbi".</li>
+<li>(TODO) From the UI: Pending development.</li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>Utilizes style module to remove existing CSS</p>
 </li>
 </ol>
 </li>
 <li>
 <p>Hybrid:  Map existing drupal fields to WebRH templates</p>
 <ol>
-<li>Example: Our Country page content type Redhat_www_type_country_module</li>
 <li>Allows for developers to map data (even from external sources) to the json/twig data.</li>
-<li>Good for existing content types</li>
+<li>Good for existing content types.</li>
 <li>Not good for complex field setups since hand mapping takes time and is error prone.</li>
+<li>How:<ol>
+<li>Override the node view of a given content type.</li>
+<li>Use the existing Drupal fields to build the render object using the PatternBuilder Library.</li>
+<li>Set the node view content as the rendered object.</li>
+</ol>
+</li>
 </ol>
 </li>
 <li>
-<p>Basic Approach: No component library</p>
+<p>(TODO) Component library only, No importer</p>
 <ol>
-<li>Example:</li>
-<li>Install module</li>
-<li>Build out patterns and templates in paragraphs?</li>
+<li>Build a content type with a Pattern field (see above).</li>
+<li>Configure the directories for the JSON schemas and TWIG templates at "admin/config/content/patternbuilder"</li>
+<li>Create a paragraph bundle.</li>
+<li>(TODO: Pending development) Associate the paragraph bundle with a JSON Schema.</li>
+<li>Add a field to the paragraph bundle.<ol>
+<li>Configure the section "Pattern Builder".</li>
+<li>Required: Set the "Property name" of the JSON Schema property that maps to this field.</li>
 </ol>
 </li>
 </ol>
-<p>**</p>
+</li>
+</ol>
 <h3 id="other-things-to-note">Other things to note</h3>
 <ol>
 <li>Your Drupal theme should (only) be responsible for the chrome of the site (header &amp; footer)</li>
