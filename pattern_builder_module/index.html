@@ -8,7 +8,7 @@
   
   
   
-  <title>Pattern Builder Module - Pattern Builder</title>
+  <title>Drupal Module - Pattern Builder</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Pattern Builder Module";
-    var mkdocs_page_input_path = "pattern_builder.md";
-    var mkdocs_page_url = "/pattern_builder/";
+    var mkdocs_page_name = "Drupal Module";
+    var mkdocs_page_input_path = "pattern_builder_module.md";
+    var mkdocs_page_url = "/pattern_builder_module/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -62,12 +62,31 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../pattern_builder_library/">PHP Library</a>
+        
+    </li>
+<li>
+          
+            <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Pattern Builder Module</a>
+        <a class="current" href="./">Drupal Module</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#pattern-builder">Pattern Builder</a></li>
+                <li class="toctree-l3"><a href="#pattern-builder-drupal-module">Pattern Builder Drupal Module</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-is-it">What is it?</a></li>
+                
+                    <li><a class="toctree-l4" href="#why">Why</a></li>
+                
+                    <li><a class="toctree-l4" href="#where">Where</a></li>
+                
+                    <li><a class="toctree-l4" href="#how">How</a></li>
+                
+                    <li><a class="toctree-l4" href="#json-schema-support">JSON Schema Support</a></li>
+                
+                    <li><a class="toctree-l4" href="#todo">TODO</a></li>
                 
             
             </ul>
@@ -77,21 +96,14 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../pattern_builder_library/">Pattern Builder Library</a>
+        <a class="" href="../pattern_builder_importer/">Drupal Schema Importer</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../pattern_builder_importer/">Pattern Builder Importer</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../using_pattern_builder/">Using Pattern Builder</a>
+        <a class="" href="../using_pattern_builder/">Drupal Usage</a>
         
     </li>
 <li>
@@ -118,7 +130,7 @@
     
       
     
-    <li>Pattern Builder Module</li>
+    <li>Drupal Module</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -128,26 +140,25 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="pattern-builder">Pattern Builder</h2>
+                <h2 id="pattern-builder-drupal-module">Pattern Builder Drupal Module</h2>
+<h3 id="what-is-it">What is it?</h3>
+<p>The Pattern Builder Module empowers your team to prototype in a static pattern library and then import the designs and content data model into Drupal with a single drush command.</p>
+<p>Need to update your design? No problem! Just update and QA the code in your pattern library and import those changes in seconds.</p>
+<h3 id="why">Why</h3>
 <ol>
 <li>
-<p>Why</p>
-<ol>
-<li>The Pattern Builder System empowers us to create a design system out of JSON schemas and Twig templates. To do this efficiently we need a tool that allows us to quickly prototype, build and validate our content structure and visual design.</li>
-<li>It is also important that developers and stakeholders have access to the growing design system.</li>
-</ol>
+<p>The Pattern Builder System empowers us to create a design system out of JSON schemas and Twig templates. To do this efficiently we need a tool that allows us to quickly prototype, build and validate our content structure and visual design.</p>
 </li>
 <li>
-<p>What is it?</p>
-<ol>
-<li>Pattern Builder is an application that lets us preview our library of templates and manipulate their content by interacting with a form built from the schemas.</li>
-<li>It is both a development tool and a public facing pattern library.</li>
-</ol>
+<p>It is important that developers and stakeholders have access to the growing design system.</p>
 </li>
-<li>
-<p>How</p>
+</ol>
+<h3 id="where">Where</h3>
 <ol>
-<li>
+<li>Drupal.org: <a href="https://www.drupal.org/project/patternbuilder">https://www.drupal.org/project/patternbuilder</a></li>
+<li>GitHub: <a href="https://github.com/PatternBuilder/pattern-builder-drupal">https://github.com/PatternBuilder/pattern-builder-drupal</a></li>
+</ol>
+<h3 id="how">How</h3>
 <p>Good question! It could be:</p>
 <ol>
 <li>
@@ -184,10 +195,14 @@
 </ul>
 </li>
 </ol>
+<h3 id="json-schema-support">JSON Schema Support</h3>
+<ol>
+<li>
+<p>Property "uniqueId"</p>
+<p>If the schema defines a "uniqueId" property, then the property value is set to the paragraph entity's item id during the rendering process.</p>
 </li>
 </ol>
-</li>
-</ol>
+<h3 id="todo">TODO</h3>
 <p>Install Options: (NEEDS CLEANUP)
 install patternbuilder module, composer install in the patternbuilder module folder + install composer_manager</p>
 <p>OR</p>
@@ -199,10 +214,10 @@ install patternbuilder module, composer install in the patternbuilder module fol
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../pattern_builder_library/" class="btn btn-neutral float-right" title="Pattern Builder Library">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../pattern_builder_importer/" class="btn btn-neutral float-right" title="Drupal Schema Importer">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pattern_builder_library/" class="btn btn-neutral" title="PHP Library"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -228,10 +243,10 @@ install patternbuilder module, composer install in the patternbuilder module fol
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../pattern_builder_library/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../pattern_builder_library/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../pattern_builder_importer/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

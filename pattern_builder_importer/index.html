@@ -8,7 +8,7 @@
   
   
   
-  <title>Pattern Builder Importer - Pattern Builder</title>
+  <title>Drupal Schema Importer - Pattern Builder</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,7 +23,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Pattern Builder Importer";
+    var mkdocs_page_name = "Drupal Schema Importer";
     var mkdocs_page_input_path = "pattern_builder_importer.md";
     var mkdocs_page_url = "/pattern_builder_importer/";
   </script>
@@ -63,25 +63,39 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../pattern_builder/">Pattern Builder Module</a>
+        <a class="" href="../pattern_builder_library/">PHP Library</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../pattern_builder_library/">Pattern Builder Library</a>
+        <a class="" href="../pattern_builder_module/">Drupal Module</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Pattern Builder Importer</a>
+        <a class="current" href="./">Drupal Schema Importer</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#pattern-builder-importer-drupal-module">Pattern Builder Importer Drupal Module</a></li>
+                <li class="toctree-l3"><a href="#pattern-builder-schema-importer-drupal-module">Pattern Builder Schema Importer Drupal Module</a></li>
+                
+                    <li><a class="toctree-l4" href="#tldr">TL;DR</a></li>
+                
+                    <li><a class="toctree-l4" href="#why">Why</a></li>
+                
+                    <li><a class="toctree-l4" href="#where">Where</a></li>
+                
+                    <li><a class="toctree-l4" href="#how">How</a></li>
+                
+                    <li><a class="toctree-l4" href="#json-schema-support">JSON Schema Support</a></li>
+                
+                    <li><a class="toctree-l4" href="#optional-drupal-extensions">Optional Drupal Extensions</a></li>
+                
+                    <li><a class="toctree-l4" href="#future-plans">Future Plans</a></li>
                 
             
             </ul>
@@ -91,7 +105,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../using_pattern_builder/">Using Pattern Builder</a>
+        <a class="" href="../using_pattern_builder/">Drupal Usage</a>
         
     </li>
 <li>
@@ -118,7 +132,7 @@
     
       
     
-    <li>Pattern Builder Importer</li>
+    <li>Drupal Schema Importer</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -128,67 +142,35 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="pattern-builder-importer-drupal-module">Pattern Builder Importer Drupal Module</h2>
+                <h2 id="pattern-builder-schema-importer-drupal-module">Pattern Builder Schema Importer Drupal Module</h2>
+<h3 id="tldr">TL;DR</h3>
+<p>It converts an library of JSON Schemas into Drupal paragraph bundles, and the JSON schema properties are converted into Drupal fields.</p>
+<h3 id="why">Why</h3>
 <ol>
 <li>
-<p>Why</p>
+<p>With a library of patterns created in Pattern Builder, we need a method for creating each Drupal admin interface that allow users to enter the data needed for each template.</p>
+</li>
+<li>
+<p>As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Styleguide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference &amp; include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.</p>
+</li>
+</ol>
+<h3 id="where">Where</h3>
 <ol>
-<li>With a library of patterns created in Pattern Builder, we need a method for creating each Drupal admin interface that allow users to enter the data needed for each template.</li>
-<li>As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Styleguide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference &amp; include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.</li>
+<li>Drupal: <a href="https://www.drupal.org/project/patternbuilder">https://www.drupal.org/project/patternbuilder</a></li>
+<li>GitHub: <a href="https://github.com/PatternBuilder/pattern-builder-drupal">https://github.com/PatternBuilder/pattern-builder-drupal</a></li>
 </ol>
-</li>
-<li>
-<p>What is it</p>
-<ol>
-<li>
-<p>TL;DR</p>
-<ol>
-<li>It takes an external library (of JSON Schemas and Twig templates), and converts the schemas into fields in Drupal as paragraph bundles, and imports the twig templates and converts them to PHP to render the nodes.</li>
-</ol>
-</li>
-<li>
-<p>Features</p>
-<ol>
-<li>
-<p>Includes support for multiple templates and schemas</p>
-<ul>
-<li>You can list WebRH as the default library, then your own custom library</li>
-<li>If templates have namespace collisions…<ol>
-<li>Check to see what twig.js does (does first or last win)</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>Automated Tests</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>How</p>
+<h3 id="how">How</h3>
 <ol>
 <li>
 <p>Tech Setup</p>
 <ol>
 <li>Install and enable module</li>
 <li>
-<p>Set up the import paths in settings.php in admin config page</p>
+<p>Set up the import paths</p>
 <ul>
-<li>Go to admin/config/content/patternbuilder</li>
-<li>
-<p>Schema directories</p>
-<ol>
-<li>sites/all/libraries/{webrh}/dist/library/schemas</li>
-</ol>
-</li>
-<li>
-<p>Template directories</p>
-<ol>
-<li>sites/all/libraries/{webrh}/dist/library/templates</li>
-</ol>
-</li>
+<li>Visit <strong>admin/config/content/patternbuilder</strong></li>
+<li>Schema directories</li>
+<li>Template directories</li>
 </ul>
 </li>
 <li>
@@ -248,19 +230,108 @@
 </ol>
 </li>
 </ol>
-</li>
-<li>
-<p>Where</p>
+<h3 id="json-schema-support">JSON Schema Support</h3>
+<p>The schema used by Pattern Builder is based on <a href="http://json-schema.org/">JSON Schema</a> with customizations for the Drupal importer.</p>
 <ol>
-<li><a href="https://www.drupal.org/project/patternbuilder">https://www.drupal.org/project/patternbuilder</a></li>
-<li><a href="https://github.com/PatternBuilder/pattern-builder-lib-php">https://github.com/PatternBuilder/pattern-builder-lib-php</a></li>
-</ol>
+<li>
+<p>Property Types:</p>
+<ul>
+<li>Primitive types: "boolean", "integer", "number", "string", "text", "textarea".</li>
+<li>Single level group of properties: "object".</li>
+<li>Multiple values with the same object properties: "array".</li>
+</ul>
 </li>
 <li>
-<p>Supported Extensions</p>
+<p>Hidden on the edit form</p>
+<ul>
+<li>Schema: <code>"options: { "hidden": true }</code></li>
+<li>Drupal configuration: Field instance setting.</li>
+</ul>
+</li>
+<li>
+<p>Read-only on the edit form</p>
+<ul>
+<li>Schema: <code>"readonly": true</code></li>
+<li>Drupal configuration: Field instance setting.</li>
+</ul>
+</li>
+<li>
+<p>Non-imported properties:</p>
+<p>If a property does not need to be imported as a Drupal field, then it can be flagged to not import it with:</p>
+<ul>
+<li>Schema: <code>"options: { "import": false }</code></li>
+<li>Drupal configuration: None</li>
+</ul>
+</li>
+<li>
+<p>Textarea</p>
+<p>Textareas are imported to a Drupal field type of "text_long". A schema property is consider to be a textarea if one of the following is true:</p>
+<ul>
+<li>Schema: <code>"format": "textarea"</code> OR <code>"format": "html"</code></li>
+<li>Drupal configuration: Field type.</li>
+</ul>
+</li>
+<li>
+<p>WYSIWYG / Filtered text</p>
+<p>Filter text in Drupal provides the user with the Input Format selector. These commonly are configured to use a WYSIWYG editor.
+A schema property is determined to allow filtered text if the following is set:</p>
+<ul>
+<li>Schema: <code>"format": "html"</code></li>
+<li>Drupal configuration: Field instance setting.</li>
+</ul>
+</li>
+<li>
+<p>Collapsible Field Groups and Field Collections</p>
+<p>The <a href="https://www.drupal.org/project/field_group">field_group</a> module is required by the importer in order to provide basic single level grouping. The schema can control the collapsibility of a group of properties with the following:</p>
+<ul>
+<li>
+<p>Schema:</p>
+<p><code>"options": {
+  "collapsed": true,
+  "disable_collapse": false
+}</code></p>
+</li>
+<li>
+<p>Drupal configuration: Field group setting, Field Collecton Fieldset widget.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Form Grid Layout</p>
+<p>This provides the ability to display grid style form elements.</p>
+<ul>
+<li>
+<p>Global config: "admin/config/content/patternbuilder"</p>
+<ul>
+<li>Row class: The class for the row container in the grid layout.</li>
+<li>Column class prefix: The number of columns will be appended to the column class prefix. Example: "grid-columns-" results in "grid-columns-4".</li>
+</ul>
+</li>
+<li>
+<p>Schema:</p>
+<p><code>"options": {
+  "grid_columns": 2
+},
+"items": {
+  "format": "grid"
+}</code></p>
+</li>
+<li>
+<p>Drupal configuration: Field instance setting.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Paragraphs preview display view mode</p>
+<p>The importer can automatically setup up the "Paragraphs Editor Preview" view mode if the property is configured as "preview".  The importer has some default formatters for some common fields (text, image). Refer to the patternbuilder_importer.api.php for hooks that allow setting custom formatters for the preview view mode.</p>
+<ul>
+<li>Schema: <code>"options: { "preview": true }</code></li>
+<li>Drupal configuration: Field display view mode settings.</li>
+</ul>
 </li>
 </ol>
-<p>The following are optional Drupal modules that are supported natively by the Pattern Builder Importer.</p>
+<h3 id="optional-drupal-extensions">Optional Drupal Extensions</h3>
+<p>The following are optional Drupal modules that are supported natively by the Pattern Builder Importer.  If these modules are enabled on the site, then the magic happens automatically.</p>
 <ol>
 <li>
 <p>Media (<a href="https://www.drupal.org/project/media">https://www.drupal.org/project/media</a>)</p>
@@ -294,30 +365,28 @@
 <p>Field Collection (<a href="https://www.drupal.org/project/field_collection">https://www.drupal.org/project/field_collection</a>)</p>
 <ol>
 <li>Supports: array of objects imported as a field collection.</li>
-<li>Schema usage: array&lt;object&gt;</li>
+<li>Schema usage: "type": "array", "items": { Each item object definition }</li>
 </ol>
 </li>
 <li>
 <p>Field Collection Fieldset (<a href="https://www.drupal.org/project/field_collection_fieldset">https://www.drupal.org/project/field_collection_fieldset</a>)</p>
 <ol>
 <li>Supports: collapsible array of objects imported to a field collection.</li>
-<li>Schema usage: options.collapsed=true, options.disable_collapse=true</li>
+<li>Schema usage: "options": {"collapsed": true/false, "disable_collapse": true/false}</li>
 </ol>
 </li>
 <li>
 <p>Field Multiple Extended (<a href="https://www.drupal.org/project/field_multiple_extended">https://www.drupal.org/project/field_multiple_extended</a>)</p>
 <ol>
 <li>Supports: Set minimum and maximum items on a property.</li>
-<li>Schema usage: minItems: 2, maxItems: 10</li>
+<li>Schema usage: "type": "array", "minItems": 2, "maxItems": 10</li>
 </ol>
 </li>
-<li>
-<p>Future Plans</p>
+</ol>
+<h3 id="future-plans">Future Plans</h3>
 <ol>
-<li>Use standard Drupal 8 rendering engine</li>
-<li>CMI (config mgmt), use schemas to manipulate YML files</li>
-</ol>
-</li>
+<li>Use standard Drupal 8 rendering engine.</li>
+<li>CMI (config mgmt), use schemas to manipulate YML files.</li>
 </ol>
               
             </div>
@@ -326,10 +395,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../using_pattern_builder/" class="btn btn-neutral float-right" title="Using Pattern Builder">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../using_pattern_builder/" class="btn btn-neutral float-right" title="Drupal Usage">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../pattern_builder_library/" class="btn btn-neutral" title="Pattern Builder Library"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pattern_builder_module/" class="btn btn-neutral" title="Drupal Module"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -355,7 +424,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../pattern_builder_library/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../pattern_builder_module/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../using_pattern_builder/" style="color: #fcfcfc">Next &raquo;</a></span>
