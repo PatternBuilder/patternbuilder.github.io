@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Pattern Builder Importer - Pattern Builder</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Pattern Builder Importer";
+    var mkdocs_page_input_path = "pattern_builder_importer.md";
+    var mkdocs_page_url = "/pattern_builder_importer/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Pattern Builder</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../pattern_builder/">Pattern Builder Module</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../pattern_builder_library/">Pattern Builder Library</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Pattern Builder Importer</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#pattern-builder-importer-drupal-module">Pattern Builder Importer Drupal Module</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../using_pattern_builder/">Using Pattern Builder</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Pattern Builder</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Pattern Builder Importer</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="pattern-builder-importer-drupal-module">Pattern Builder Importer Drupal Module</h2>
+<ol>
+<li>
+<p>Why</p>
+<ol>
+<li>With a library of patterns created in Pattern Builder, we need a method for creating each Drupal admin interface that allow users to enter the data needed for each template.</li>
+<li>As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Styleguide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference &amp; include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.</li>
+</ol>
+</li>
+<li>
+<p>What is it</p>
+<ol>
+<li>
+<p>TL;DR</p>
+<ol>
+<li>It takes an external library (of JSON Schemas and Twig templates), and converts the schemas into fields in Drupal as paragraph bundles, and imports the twig templates and converts them to PHP to render the nodes.</li>
+</ol>
+</li>
+<li>
+<p>Features</p>
+<ol>
+<li>
+<p>Includes support for multiple templates and schemas</p>
+<ul>
+<li>You can list WebRH as the default library, then your own custom library</li>
+<li>If templates have namespace collisions…<ol>
+<li>Check to see what twig.js does (does first or last win)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Automated Tests</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>How</p>
+<ol>
+<li>
+<p>Tech Setup</p>
+<ol>
+<li>Install and enable module</li>
+<li>
+<p>Set up the import paths in settings.php in admin config page</p>
+<ul>
+<li>Go to admin/config/content/patternbuilder</li>
+<li>
+<p>Schema directories</p>
+<ol>
+<li>sites/all/libraries/{webrh}/dist/library/schemas</li>
+</ol>
+</li>
+<li>
+<p>Template directories</p>
+<ol>
+<li>sites/all/libraries/{webrh}/dist/library/templates</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Use Drush to run the pattern builder import command</p>
+<ul>
+<li>If there are new patterns, first rsync webrh</li>
+<li>SSL into sandbox</li>
+<li>Run <code>drush pbi</code></li>
+</ul>
+</li>
+<li>
+<p>View the imported patterns now stored as paragraph bundles</p>
+<ul>
+<li>Visit admin/structure/paragraphs</li>
+</ul>
+</li>
+<li>
+<p>Manage Fields on the (new) content type,</p>
+<ul>
+<li>Add a paragraphs field, choose which patterns you want to make available for content editors</li>
+<li>Set widget to “Embedded Patterns”</li>
+</ul>
+</li>
+<li>
+<p>Manage Display: Set the display format on the paragraph field to "Patternbuilder rendered items"</p>
+</li>
+<li>Other Notes:<ul>
+<li>Don’t forget to load the webrh.css via a pre-process function or the style module</li>
+<li>Optional: Modify the content type node--[type].tpl.php as needed to remove other regions etc</li>
+<li>To use the test pattern, enabled “Red Hat webrh test” on the modules page: /admin/modules?filter=webrh_test&amp;enabled=1&amp;disabled=1&amp;required=1&amp;unavailable=1 -- it will take a while to import so you have to wait for the page to be done refreshing</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Drush Commands</p>
+<ol>
+<li>
+<p>Imports patterns from defined library</p>
+<ul>
+<li>drush pbi  : Import all schemas.</li>
+<li>drush pbi --all  :  Force the import of all schemas even if specific schemas are defined.</li>
+<li>drush pbi band card :  Import only the "band" and "card" schemas.</li>
+<li>drush pbi --type=layout  : Import only the schemas for the "layout" pattern type.</li>
+<li>drush pbi -image_box</li>
+</ul>
+</li>
+<li>
+<p>Remove imported patterns from Drupal</p>
+<ul>
+<li>drush pbi-remove  : Nothing is removed. This safeguards against accidental commands.</li>
+<li>drush pbi-remove --all : Removes all schemas.</li>
+<li>drush pbi-remove band card : Removes only the "band" and "card" schemas.</li>
+<li>drush pbi-remove --type=layout : Removes only the schemas for the "layout" pattern type.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Where</p>
+<ol>
+<li><a href="https://www.drupal.org/project/patternbuilder">https://www.drupal.org/project/patternbuilder</a></li>
+<li><a href="https://web-dev-gitlab03.devlab.redhat.com/it-marketing/webdrupal">https://web-dev-gitlab03.devlab.redhat.com/it-marketing/webdrupal</a></li>
+</ol>
+</li>
+<li>
+<p>Supported Extensions</p>
+</li>
+</ol>
+<p>The following are optional Drupal modules that are supported natively by the Pattern Builder Importer.</p>
+<ol>
+<li>
+<p>Media (<a href="https://www.drupal.org/project/media">https://www.drupal.org/project/media</a>)</p>
+<ol>
+<li>Supports: file, image, audio, video</li>
+<li>Schema usage: "entity": "file|image|audio|video"</li>
+</ol>
+</li>
+<li>
+<p>Media Internet - Submodule of Media (<a href="https://www.drupal.org/project/media">https://www.drupal.org/project/media</a>)</p>
+<ol>
+<li>Supports: internet based files</li>
+<li>Schema usage: "entity": "file|image|audio|video"</li>
+</ol>
+</li>
+<li>
+<p>Media YouTube (<a href="https://www.drupal.org/project/media_youtube">https://www.drupal.org/project/media_youtube</a>)</p>
+<ol>
+<li>Supports: YouTube videos</li>
+<li>Schema usage: "entity": "video"</li>
+</ol>
+</li>
+<li>
+<p>Link (<a href="https://www.drupal.org/project/link">https://www.drupal.org/project/link</a>)</p>
+<ol>
+<li>Supports: link fields</li>
+<li>Schema usage: "entity": "link"</li>
+</ol>
+</li>
+<li>
+<p>Field Collection (<a href="https://www.drupal.org/project/field_collection">https://www.drupal.org/project/field_collection</a>)</p>
+<ol>
+<li>Supports: array of objects imported as a field collection.</li>
+<li>Schema usage: array&lt;object&gt;</li>
+</ol>
+</li>
+<li>
+<p>Field Collection Fieldset (<a href="https://www.drupal.org/project/field_collection_fieldset">https://www.drupal.org/project/field_collection_fieldset</a>)</p>
+<ol>
+<li>Supports: collapsible array of objects imported to a field collection.</li>
+<li>Schema usage: options.collapsed=true, options.disable_collapse=true</li>
+</ol>
+</li>
+<li>
+<p>Field Multiple Extended (<a href="https://www.drupal.org/project/field_multiple_extended">https://www.drupal.org/project/field_multiple_extended</a>)</p>
+<ol>
+<li>Supports: Set minimum and maximum items on a property.</li>
+<li>Schema usage: minItems: 2, maxItems: 10</li>
+</ol>
+</li>
+<li>
+<p>Future Plans</p>
+<ol>
+<li>Use standard Drupal 8 rendering engine</li>
+<li>CMI (config mgmt), use schemas to manipulate YML files</li>
+</ol>
+</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../using_pattern_builder/" class="btn btn-neutral float-right" title="Using Pattern Builder">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pattern_builder_library/" class="btn btn-neutral" title="Pattern Builder Library"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../pattern_builder_library/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../using_pattern_builder/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

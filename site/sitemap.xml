@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>None/</loc>
+     <lastmod>2016-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/pattern_builder/</loc>
+     <lastmod>2016-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/pattern_builder_library/</loc>
+     <lastmod>2016-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/pattern_builder_importer/</loc>
+     <lastmod>2016-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/using_pattern_builder/</loc>
+     <lastmod>2016-05-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>
