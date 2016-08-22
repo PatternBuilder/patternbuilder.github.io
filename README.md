@@ -20,10 +20,20 @@ For full documentation visit [mkdocs.org](http://mkdocs.org).
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
 
+## Developing the site
+
+* Ensure mkdocs is installed. See above.
+* Checkout the latest *dev* branch.
+* From the commandline, run `make build`
+    - Downloads the latest files - Example: Pattern Kit's README.md.
+    - Builds the site at "./site"
+
 ## Deploying the site
 
 * Ensure mkdocs is installed. See above.
 * Checkout the latest *dev* branch.
-* From the commandline, run `make deploy` - This will build the *dev* branch in the *master* branch.
+* From the commandline, run `make deploy`
+    - Downloads the latest files - Example: Pattern Kit's README.md.
+    - This will build the *dev* branch in the *master* branch.
 * Push changes to this repository.
 * Changes should be seen on [patternbuilder.github.io](http://patternbuilder.github.io).
