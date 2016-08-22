@@ -97,6 +97,8 @@
                 
                     <li><a class="toctree-l4" href="#future-plans">Future Plans</a></li>
                 
+                    <li><a class="toctree-l4" href="#troubleshooting">Troubleshooting</a></li>
+                
             
             </ul>
         
@@ -176,8 +178,7 @@
 <li>
 <p>Use Drush to run the pattern builder import command</p>
 <ul>
-<li>If there are new patterns, first rsync webrh</li>
-<li>SSL into sandbox</li>
+<li>If there are new patterns, then sync changes to the patternbuilder schema and template directories.</li>
 <li>Run <code>drush pbi</code></li>
 </ul>
 </li>
@@ -198,9 +199,7 @@
 <p>Manage Display: Set the display format on the paragraph field to "Patternbuilder rendered items"</p>
 </li>
 <li>Other Notes:<ul>
-<li>Don’t forget to load the webrh.css via a pre-process function or the style module</li>
-<li>Optional: Modify the content type node--[type].tpl.php as needed to remove other regions etc</li>
-<li>To use the test pattern, enabled “Red Hat webrh test” on the modules page: /admin/modules?filter=webrh_test&amp;enabled=1&amp;disabled=1&amp;required=1&amp;unavailable=1 -- it will take a while to import so you have to wait for the page to be done refreshing</li>
+<li>Optional: Modify the content type node--[type].tpl.php as needed to remove other regions etc.</li>
 </ul>
 </li>
 </ol>
@@ -388,6 +387,134 @@ A schema property is determined to allow filtered text if the following is set:<
 <li>Use standard Drupal 8 rendering engine.</li>
 <li>CMI (config mgmt), use schemas to manipulate YML files.</li>
 </ol>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>After any import, check the logs to verify that there were no issues during the import. All errors and warnings are logged via the Drupal watchdog() function.
+One of the following modules should be enabled on the site:</p>
+<ul>
+<li>Database logging (dblog):<ul>
+<li>Drupal configuration: "/admin/config/development/logging"</li>
+<li>View logs: "/admin/reports/dblog", filter by type = "patternbuilder_importer"</li>
+</ul>
+</li>
+<li>Syslog (syslog):<ul>
+<li>Drupal configuration: "/admin/config/development/logging"</li>
+<li>View logs: Logs are available in the server log files, search for logs with "patternbuilder_importer". Actual location depends on the server's config for syslog.</li>
+</ul>
+</li>
+</ul>
+<h4 id="log-messages">Log Messages</h4>
+<p><strong>WARNING: "There were no schema files found to import."</strong></p>
+<p>The Pattern Builder module scans the schema directory for files with the .json extension. This message is logged if no schema files were found.</p>
+<ul>
+<li>Check that the schema directories are configured correctly at "admin/config/content/patternbuilder".</li>
+<li>Verify that there are schema files in the directories.</li>
+</ul>
+<hr />
+<p><strong>WARNING: 'There were no schema files found for the following: schema01, schema02.'</strong></p>
+<p>This message is logged when importing specific schemas and the importer cannot find the schema files.</p>
+<p>Example: "drush pbi schema01 schema02"</p>
+<p>The files schema01.json and schema02.json cannot be found in the schema directories configured at "admin/config/content/patternbuilder".</p>
+<hr />
+<p><strong>WARNING: 'The schema file does not exist: "file:///path/to/schemas/schema01.json"'</strong></p>
+<p>This message is logged if the schema file was registered but the file could not be found when attempting to load it.</p>
+<hr />
+<p><strong>WARNING: 'The schema file name contains an invalid hyphen: "file:///path/to/schemas/schema01.json"'</strong></p>
+<p>The schema file names cannot contain a hyphen. The file name is used for the pattern's machine name and paragraph bundle name. The hyphens are replaced with underscores when using it as a paragraph bundle, therefore if the name has a hyphen then it would not be reversible in this replacement. See paragraphs_bundle_load().</p>
+<hr />
+<p><strong>WARNING: 'The schema file is empty:  "file:///path/to/schemas/schema01.json"'</strong></p>
+<p>This message is logged when the loaded file is empty.</p>
+<hr />
+<p><strong>WARNING: 'The schema file could not be decoded: "file:///path/to/schemas/schema01.json". The most common cause of this error is malformed JSON in the schema file.'</strong></p>
+<p>This message is logged when attempting to JSON decode the contents of the file. The most common cause of this error is malformed JSON in the schema file.</p>
+<hr />
+<p><strong>WARNING: 'The schema file "file:///path/to/schemas/schema01.json" could not be loaded.'</strong></p>
+<p>An unknown error occurred that prevented the schema file from being loaded and decoded.</p>
+<p>Please open a new issue on the patternbuilder module's <a href="https://www.drupal.org/project/issues/patternbuilder">drupal.org issue queue</a> and attached the schema file that will not import.</p>
+<hr />
+<p><strong>WARNING: 'Meta type not found for "someProperty" of type "not_found".'</strong></p>
+<p>This occurs when the property type cannot be mapped to an importer meta type. See section "Property Types" above for available types.</p>
+<hr />
+<p><strong>WARNING: 'Meta type handler could not be loaded for "someProperty" of type "object".'</strong></p>
+<p>This occurs for the following:
+- The property type could not be mapped to an import handler class.
+- The dependencies were not met for the found import handler class.</p>
+<hr />
+<p><strong>WARNING: 'Meta type not found for reference "someRefProperty".'</strong></p>
+<p>This message is logged when the importer meta type could not be be determined for the referenced property.  The importer's factory will attempt to resolve the reference using a field reference and a field group reference resolver.</p>
+<p>This could occur if the field or field group has not been created yet.  If the referenced property is defined in another schema, then care should be take to ensure the import order - referenced property schema first, then the schema referencing it.
+The order can be controlled with pattern types (see hook_patternbuilder_pattern_types) or the file names in the directory.</p>
+<hr />
+<p><strong>WARNING: 'Base field creation failed for @field'</strong></p>
+<p>The importer could not create the base field. Check the logs for other Drupal errors that occurred during the creation attempt.</p>
+<hr />
+<p><strong>WARNING: 'Missing base field definition for @field'</strong></p>
+<p>The importer reached a scenario where it is attempting to create a field instance but there is not field base created yet.</p>
+<p>This is an edge case. If encountered, please open an issue on the patternbuilder module's <a href="https://www.drupal.org/project/issues/patternbuilder">drupal.org issue queue</a>.</p>
+<hr />
+<p><strong>ERROR: 'field_123_text (text =&gt; text_long): Cannot change an existing field's type.'</strong></p>
+<p>This error occurs when the field type determine from the property's schema is different than the existing field's type in Drupal.</p>
+<p>The patternbuilder.install provides a helper function to convert text fields.  This should be added to an update function before the fields are imported.</p>
+<pre><code class="php">/**
+ * Convert awesome_pattern text property to a long text field.
+ */
+function mymodule_update_7123() {
+  $pattern_name = 'awesome_pattern';
+  $property_name = 'text';
+  $field_type_new = 'text_long';
+
+  $instance = patternbuilder_field_info_property_instance($pattern_name, array($property_name));
+  if (!empty($instance['field_name'])) {
+    module_load_install('patternbuilder');
+    $converted = patternbuilder_convert_text_field($field_name, $new_type);
+    if ($converted) {
+      // Import schema to allow the importer to set any customizations for the
+      // field and instances.
+      patternbuilder_importer_import_schemas(array($pattern_name));
+    }
+    else {
+      $t = get_t();
+      $error_message = $t('@pattern @property could not be converted.', array(
+        '@pattern' =&gt; $pattern_name,
+        '@property' =&gt; implode('.', $property_names),
+      ));
+
+      if ($converted === FALSE) {
+        // Hard fail.
+        throw new DrupalUpdateException($error_message);
+      }
+      else {
+        // Soft fail for incomplete data or conversion not allowed.
+        watchdog('mymodule_update_7123', $error_message);
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Allowed Drupal field type conversions via patternbuilder_convert_text_field():</p>
+<ul>
+<li>'text' TO 'text_long' or 'text_with_summary'.</li>
+<li>'text_long' TO 'text_with_summary'</li>
+<li>'text_with_summary' TO 'text_long': The 'summary' column is kept.</li>
+</ul>
+<hr />
+<p><strong>ERROR: 'The property references a schema that is not imported due to the status "inactive": "schema_really_old.json#/properties/display_title"'</strong></p>
+<p>This message is logged if the referenced property's schema has never been imported and there is a property referencing it.</p>
+<p>A referenced Drupal field cannot be found if the schema was never imported to a paragraph bundle.</p>
+<hr />
+<p><strong>WARNING: 'The property references a schema that is not creatable due to the status "deprecated": "schema_old.json#/properties/display_title"'</strong></p>
+<p>This message is logged if the referenced property's schema is not creatable and there is a property referencing it.</p>
+<hr />
+<p><strong>WARNING: 'The paragraphs field @field_name references a schema that is not imported due to the status "inactive", schema: schema_really_old.json'</strong></p>
+<p>The allowed schemas references a schema that is not imported based on the pattern's status. The "inactive" status is provided by the patternbuilder module.</p>
+<p>In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be available on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
+<hr />
+<p><strong>WARNING: 'The paragraphs field @field_name references a schema that is not creatable due to the status "deprecated", schema: schema_old.json'</strong></p>
+<p>The allowed schemas references a schema that is not creatable based on the pattern's status. The "inactive" and "deprecated" statuses are provided by the patternbuilder module.</p>
+<p>In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be allowed to be created on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
+<hr />
+<p><strong>WARNING: 'Child fields could not be created for field collection field_124_some_collection'</strong></p>
+<p>This is logged in the Field Collection import handler when the field collection field instance was not created. The field collection field must be created before attached fields to the field collection entity bundle.</p>
               
             </div>
           </div>
