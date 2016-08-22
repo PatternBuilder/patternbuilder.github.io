@@ -297,6 +297,9 @@ This error occurs when the field type determine from the property's schema is di
 The patternbuilder.install provides a helper function to convert text fields.  This should be added to an update function before the fields are imported.
 
 ```php
+/**
+ * Convert awesome_pattern text property to a long text field.
+ */
 function mymodule_update_7123() {
   $pattern_name = 'awesome_pattern';
   $property_name = 'text';
@@ -331,7 +334,7 @@ function mymodule_update_7123() {
 }
 ```
 
-Allowed conversions:
+Allowed Drupal field type conversions via patternbuilder_convert_text_field():
 
 - 'text' TO 'text_long' or 'text_with_summary'.
 - 'text_long' TO 'text_with_summary'
