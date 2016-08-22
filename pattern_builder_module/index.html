@@ -63,6 +63,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../pattern_kit/">Pattern Kit</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../pattern_builder_library/">PHP Library</a>
         
     </li>
@@ -85,6 +92,8 @@
                     <li><a class="toctree-l4" href="#how">How</a></li>
                 
                     <li><a class="toctree-l4" href="#json-schema-support">JSON Schema Support</a></li>
+                
+                    <li><a class="toctree-l4" href="#troubleshooting">Troubleshooting</a></li>
                 
                     <li><a class="toctree-l4" href="#todo">TODO</a></li>
                 
@@ -143,7 +152,7 @@
                 <h2 id="pattern-builder-drupal-module">Pattern Builder Drupal Module</h2>
 <h3 id="what-is-it">What is it?</h3>
 <p>The Pattern Builder Module empowers your team to prototype in a static pattern library and then import the designs and content data model into Drupal with a single drush command.</p>
-<p>Need to update your design? No problem! Just update and QA the code in your pattern library and import those changes in seconds.</p>
+<p>Need to update your design? No problem! Just update and QA the code in your pattern library and import those changes to Drupal in seconds.</p>
 <h3 id="why">Why</h3>
 <ol>
 <li>
@@ -159,39 +168,22 @@
 <li>GitHub: <a href="https://github.com/PatternBuilder/pattern-builder-drupal">https://github.com/PatternBuilder/pattern-builder-drupal</a></li>
 </ol>
 <h3 id="how">How</h3>
-<p>Good question! It could be:</p>
+<p>The Pattern Builder module contains a composer.json to build the library dependencies.
+Below are some options to integrate the patternbuilder module into a project.</p>
 <ol>
 <li>
-<p>Composer Module</p>
+<p>Composer Manager Module: <a href="https://www.drupal.org/project/composer_manager">https://www.drupal.org/project/composer_manager</a></p>
 <ul>
-<li>Add composer dependency</li>
-<li>Symlink assets to web/app root (or use custom install location)</li>
-<li>Create pb_config.yml<ol>
-<li>Includes paths to schemas/templates/data</li>
-<li>Includes paths to js/css to add to preview</li>
-</ol>
-</li>
+<li>Install the composer_manager module.</li>
+<li>Download and install the patternbuilder module: <code>drush en -y patternbuilder</code></li>
+<li>See the Composer Manager's documentation for more commands.</li>
 </ul>
 </li>
 <li>
-<p>Git clone</p>
+<p>Git clone / Drush Make file</p>
 <ul>
-<li>Clone repo to root (at least at/above theme)</li>
-<li>Repo includes<ol>
-<li>Index.php (index just pulls from app folder)</li>
-<li>pb_config.yml</li>
-<li>App_folder</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>Grunt Project</p>
-<ul>
-<li>Clone grunt repo. NPM install, Bower Install, Composer install</li>
-<li>Use built in yeoman to create templates/schemas</li>
-<li>Add sass and sample data to component/layout folders</li>
-<li>Run grunt commands to compile, spin up local php server, lint etc</li>
+<li>Clone repo to the site's modules directory (Example: "sites/all/modules").</li>
+<li>Run <code>composer install</code> within the patternbuilder module's directory.</li>
 </ul>
 </li>
 </ol>
@@ -202,6 +194,34 @@
 <p>If the schema defines a "uniqueId" property, then the property value is set to the paragraph entity's item id during the rendering process.</p>
 </li>
 </ol>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>All errors and warnings are logged via the Drupal watchdog() function.
+One of the following modules should be enabled on the site:</p>
+<ul>
+<li>Database logging (dblog):<ul>
+<li>Drupal configuration: "/admin/config/development/logging"</li>
+<li>View logs: "/admin/reports/dblog", filter by type = "patternbuilder"</li>
+</ul>
+</li>
+<li>Syslog (syslog):<ul>
+<li>Drupal configuration: "/admin/config/development/logging"</li>
+<li>View logs: Logs are available in the server log files, search for logs with "patternbuilder". Actual location depends on the server's config for syslog.</li>
+</ul>
+</li>
+</ul>
+<h4 id="log-messages">Log Messages</h4>
+<p><strong>WARNING: 'Duplicate schemas found for "my_schema" at "file:///path/to/schemas-alternative/my_schema.json". The first schema registered will be used until this conflict has been resolved. Active schema: "file:///path/to/schemas/my_schema.json"'</strong></p>
+<p>The Pattern Builder module allows multiple schema directories to be defined at "admin/config/content/patternbuilder". This message is logged when there is a schema file with the same name in multiple directories.</p>
+<ul>
+<li>Check that the schema directories are configured correctly at "admin/config/content/patternbuilder".</li>
+<li>Verify the schema files in the directories.</li>
+</ul>
+<hr />
+<p><strong>ERROR: 'An error occurred while rendering the "pbi_my_schema" paragraph item (id:1, revision:22) on node (id:234, revision:6788): Unable to find template ".twig" (looked into: /var/www/html/path/to/schemas, /var/www/html/path/to/schemas-alternative) in "my_band.twig" at line 61.</strong></p>
+<p>The error log "An error occurred while rendering ..." occurs during rendering of the field formatter typically on the node page.  This error is logged for any error occurring in the Pattern Library rendering of the schema and TWIG template.</p>
+<p>This is a silent error so that it does not stop the rendering of the rest of patterns and the Drupal page. The failed pattern will not be displayed on the page.</p>
+<p>A common error is displayed above. This is an error when a TWIG template includes another template without specifying a file name.</p>
+<hr />
 <h3 id="todo">TODO</h3>
 <p>Install Options: (NEEDS CLEANUP)
 install patternbuilder module, composer install in the patternbuilder module folder + install composer_manager</p>

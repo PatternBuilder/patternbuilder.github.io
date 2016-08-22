@@ -63,6 +63,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../pattern_kit/">Pattern Kit</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../pattern_builder_library/">PHP Library</a>
         
     </li>
@@ -153,7 +160,7 @@
 <p>With a library of patterns created in Pattern Builder, we need a method for creating each Drupal admin interface that allow users to enter the data needed for each template.</p>
 </li>
 <li>
-<p>As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Styleguide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference &amp; include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.</p>
+<p>As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Style guide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference &amp; include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.</p>
 </li>
 </ol>
 <h3 id="where">Where</h3>
@@ -210,11 +217,11 @@
 <li>
 <p>Imports patterns from defined library</p>
 <ul>
-<li>drush pbi  : Import all schemas.</li>
-<li>drush pbi --all  :  Force the import of all schemas even if specific schemas are defined.</li>
-<li>drush pbi band card :  Import only the "band" and "card" schemas.</li>
-<li>drush pbi --type=layout  : Import only the schemas for the "layout" pattern type.</li>
-<li>drush pbi -image_box</li>
+<li>drush pbi : Import all schemas.</li>
+<li>drush pbi --all : Force the import of all schemas even if specific schemas are defined.</li>
+<li>drush pbi band card : Import only the "band" and "card" schemas.</li>
+<li>drush pbi --type=layout : Import only the schemas for the "layout" pattern type.</li>
+<li>drush pbi image_box</li>
 </ul>
 </li>
 <li>
@@ -507,11 +514,11 @@ function mymodule_update_7123() {
 <hr />
 <p><strong>WARNING: 'The paragraphs field @field_name references a schema that is not imported due to the status "inactive", schema: schema_really_old.json'</strong></p>
 <p>The allowed schemas references a schema that is not imported based on the pattern's status. The "inactive" status is provided by the patternbuilder module.</p>
-<p>In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be available on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
+<p>In Drupal, this refers to the paragraphs field's allowed bundles (schemas) which must be available on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
 <hr />
 <p><strong>WARNING: 'The paragraphs field @field_name references a schema that is not creatable due to the status "deprecated", schema: schema_old.json'</strong></p>
 <p>The allowed schemas references a schema that is not creatable based on the pattern's status. The "inactive" and "deprecated" statuses are provided by the patternbuilder module.</p>
-<p>In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be allowed to be created on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
+<p>In Drupal, this refers to the paragraphs field's allowed bundles (schemas) which must be allowed to be created on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.</p>
 <hr />
 <p><strong>WARNING: 'Child fields could not be created for field collection field_124_some_collection'</strong></p>
 <p>This is logged in the Field Collection import handler when the field collection field instance was not created. The field collection field must be created before attached fields to the field collection entity bundle.</p>

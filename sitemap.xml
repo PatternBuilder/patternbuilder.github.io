@@ -11,6 +11,14 @@
 
     
     <url>
+     <loc>None/pattern_kit/</loc>
+     <lastmod>2016-08-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>None/pattern_builder_library/</loc>
      <lastmod>2016-08-22</lastmod>
      <changefreq>daily</changefreq>
