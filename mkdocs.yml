@@ -2,6 +2,7 @@ site_name: Pattern Builder
 
 pages:
 - Home: index.md
+- Pattern Kit: pattern_kit.md
 - PHP Library: pattern_builder_library.md
 - Drupal Module: pattern_builder_module.md
 - Drupal Schema Importer: pattern_builder_importer.md
