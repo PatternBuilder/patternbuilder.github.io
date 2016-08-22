@@ -32,8 +32,7 @@ It converts an library of JSON Schemas into Drupal paragraph bundles, and the JS
         - Template directories
 
     1. Use Drush to run the pattern builder import command
-        - If there are new patterns, first rsync webrh
-        - SSL into sandbox
+        - If there are new patterns, then sync changes to the patternbuilder schema and template directories.
         - Run `drush pbi`
 
     1. View the imported patterns now stored as paragraph bundles
@@ -45,10 +44,7 @@ It converts an library of JSON Schemas into Drupal paragraph bundles, and the JS
 
     1. Manage Display: Set the display format on the paragraph field to "Patternbuilder rendered items"
     1. Other Notes:
-        - Don’t forget to load the webrh.css via a pre-process function or the style module
-        - Optional: Modify the content type node--[type].tpl.php as needed to remove other regions etc
-        - To use the test pattern, enabled “Red Hat webrh test” on the modules page: /admin/modules?filter=webrh_test&enabled=1&disabled=1&required=1&unavailable=1 -- it will take a while to import so you have to wait for the page to be done refreshing
-
+        - Optional: Modify the content type node--[type].tpl.php as needed to remove other regions etc.
 
 1. Drush Commands
     1. Imports patterns from defined library
@@ -294,23 +290,59 @@ This is an edge case. If encountered, please open an issue on the patternbuilder
 
 - - -
 
-**ERROR: '@field (@field_type): @base_field_error'**
+**ERROR: 'field_123_text (text => text_long): Cannot change an existing field's type.'**
 
-field_402_text (text => text_long): Cannot change an existing field's type.
+This error occurs when the field type determine from the property's schema is different than the existing field's type in Drupal.
 
-TODO: Get field type error.
+The patternbuilder.install provides a helper function to convert text fields.  This should be added to an update function before the fields are imported.
 
-Note on how to convert text fields.
+```php
+function mymodule_update_7123() {
+  $pattern_name = 'awesome_pattern';
+  $property_name = 'text';
+  $field_type_new = 'text_long';
 
+  $instance = patternbuilder_field_info_property_instance($pattern_name, array($property_name));
+  if (!empty($instance['field_name'])) {
+    module_load_install('patternbuilder');
+    $converted = patternbuilder_convert_text_field($field_name, $new_type);
+    if ($converted) {
+      // Import schema to allow the importer to set any customizations for the
+      // field and instances.
+      patternbuilder_importer_import_schemas(array($pattern_name));
+    }
+    else {
+      $t = get_t();
+      $error_message = $t('@pattern @property could not be converted.', array(
+        '@pattern' => $pattern_name,
+        '@property' => implode('.', $property_names),
+      ));
 
+      if ($converted === FALSE) {
+        // Hard fail.
+        throw new DrupalUpdateException($error_message);
+      }
+      else {
+        // Soft fail for incomplete data or conversion not allowed.
+        watchdog('mymodule_update_7123', $error_message);
+      }
+    }
+  }
+}
+```
 
+Allowed conversions:
+
+- 'text' TO 'text_long' or 'text_with_summary'.
+- 'text_long' TO 'text_with_summary'
+- 'text_with_summary' TO 'text_long': The 'summary' column is kept.
 
 
 - - -
 
 **ERROR: 'The property references a schema that is not imported due to the status "inactive": "schema_really_old.json#/properties/display_title"'**
 
-This message is logged if the referenced  property's schema has never been imported and there is a property referencing it.
+This message is logged if the referenced property's schema has never been imported and there is a property referencing it.
 
 A referenced Drupal field cannot be found if the schema was never imported to a paragraph bundle.
 
