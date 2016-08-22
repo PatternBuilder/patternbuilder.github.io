@@ -13,7 +13,7 @@ It converts an library of JSON Schemas into Drupal paragraph bundles, and the JS
 
 1. With a library of patterns created in Pattern Builder, we need a method for creating each Drupal admin interface that allow users to enter the data needed for each template.
 
-1. As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Styleguide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference & include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.
+1. As a content admin, you may want to create a customizable content type(s) which include entity references to smaller content patterns, such as field collection bundles. These bundles will be built to match the defined components from the Style guide. This would expose the ability to both create content and control the ordering, layout, and design from within the node editing interface, and would be fully revisionable. Additionally, editors would be able reference & include existing view blocks within the field groups. Editors could then apply data attributes such as layout and theme to these view blocks or field collections.
 
 
 ### Where
@@ -48,11 +48,11 @@ It converts an library of JSON Schemas into Drupal paragraph bundles, and the JS
 
 1. Drush Commands
     1. Imports patterns from defined library
-        - drush pbi  : Import all schemas.
-        - drush pbi --all  :  Force the import of all schemas even if specific schemas are defined.
-        - drush pbi band card :  Import only the "band" and "card" schemas.
-        - drush pbi --type=layout  : Import only the schemas for the "layout" pattern type.
-        - drush pbi -image_box
+        - drush pbi : Import all schemas.
+        - drush pbi --all : Force the import of all schemas even if specific schemas are defined.
+        - drush pbi band card : Import only the "band" and "card" schemas.
+        - drush pbi --type=layout : Import only the schemas for the "layout" pattern type.
+        - drush pbi image_box
 
     1. Remove imported patterns from Drupal
         - drush pbi-remove  : Nothing is removed. This safeguards against accidental commands.
@@ -361,7 +361,7 @@ This message is logged if the referenced property's schema is not creatable and 
 
 The allowed schemas references a schema that is not imported based on the pattern's status. The "inactive" status is provided by the patternbuilder module.
 
-In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be available on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.
+In Drupal, this refers to the paragraphs field's allowed bundles (schemas) which must be available on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.
 
 - - -
 
@@ -369,7 +369,7 @@ In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which 
 
 The allowed schemas references a schema that is not creatable based on the pattern's status. The "inactive" and "deprecated" statuses are provided by the patternbuilder module.
 
-In Drupal, this refers to the pargraphs field's allowed bundles (schemas) which must be allowed to be created on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.
+In Drupal, this refers to the paragraphs field's allowed bundles (schemas) which must be allowed to be created on the site. This is a WARNING since this only reduces the allowed bundle options and does not block the import.
 
 - - -
 
