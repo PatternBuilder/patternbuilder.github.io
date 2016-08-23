@@ -25,7 +25,7 @@ Need to update your design? No problem! Just update and QA the code in your patt
 1. GitHub: [https://github.com/PatternBuilder/pattern-builder-drupal](https://github.com/PatternBuilder/pattern-builder-drupal)
 
 
-### How
+### Setup
 
 The Pattern Builder module contains a composer.json to build the library dependencies.
 Below are some options to integrate the patternbuilder module into a project.
@@ -38,6 +38,13 @@ Below are some options to integrate the patternbuilder module into a project.
 1. Git clone / Drush Make file
     - Clone repo to the site's modules directory (Example: "sites/all/modules").
     - Run `composer install` within the patternbuilder module's directory.
+
+
+### How
+
+See [Using Pattern Builder](using_pattern_builder.md).
+
+
 
 ### JSON Schema Support
 
