@@ -90,7 +90,7 @@
             
                 <li class="toctree-l3"><a href="#pattern-builder-schema-importer-drupal-module">Pattern Builder Schema Importer Drupal Module</a></li>
                 
-                    <li><a class="toctree-l4" href="#tldr">TL;DR</a></li>
+                    <li><a class="toctree-l4" href="#what-is-it">What is it?</a></li>
                 
                     <li><a class="toctree-l4" href="#why">Why</a></li>
                 
@@ -152,7 +152,7 @@
             <div class="section">
               
                 <h2 id="pattern-builder-schema-importer-drupal-module">Pattern Builder Schema Importer Drupal Module</h2>
-<h3 id="tldr">TL;DR</h3>
+<h3 id="what-is-it">What is it?</h3>
 <p>It converts an library of JSON Schemas into Drupal paragraph bundles, and the JSON schema properties are converted into Drupal fields.</p>
 <h3 id="why">Why</h3>
 <ol>
@@ -250,31 +250,31 @@
 <li>
 <p>Hidden on the edit form</p>
 <ul>
-<li>Schema: <code>"options: { "hidden": true }</code></li>
 <li>Drupal configuration: Field instance setting.</li>
+<li>Schema: <code>"options: { "hidden": true }</code></li>
 </ul>
 </li>
 <li>
 <p>Read-only on the edit form</p>
 <ul>
-<li>Schema: <code>"readonly": true</code></li>
 <li>Drupal configuration: Field instance setting.</li>
+<li>Schema: <code>"readonly": true</code></li>
 </ul>
 </li>
 <li>
 <p>Non-imported properties:</p>
 <p>If a property does not need to be imported as a Drupal field, then it can be flagged to not import it with:</p>
 <ul>
-<li>Schema: <code>"options: { "import": false }</code></li>
 <li>Drupal configuration: None</li>
+<li>Schema: <code>"options: { "import": false }</code></li>
 </ul>
 </li>
 <li>
 <p>Textarea</p>
 <p>Textareas are imported to a Drupal field type of "text_long". A schema property is consider to be a textarea if one of the following is true:</p>
 <ul>
-<li>Schema: <code>"format": "textarea"</code> OR <code>"format": "html"</code></li>
 <li>Drupal configuration: Field type.</li>
+<li>Schema: <code>"format": "textarea"</code> OR <code>"format": "html"</code></li>
 </ul>
 </li>
 <li>
@@ -282,23 +282,21 @@
 <p>Filter text in Drupal provides the user with the Input Format selector. These commonly are configured to use a WYSIWYG editor.
 A schema property is determined to allow filtered text if the following is set:</p>
 <ul>
-<li>Schema: <code>"format": "html"</code></li>
 <li>Drupal configuration: Field instance setting.</li>
+<li>Schema: <code>"format": "html"</code></li>
 </ul>
 </li>
 <li>
 <p>Collapsible Field Groups and Field Collections</p>
 <p>The <a href="https://www.drupal.org/project/field_group">field_group</a> module is required by the importer in order to provide basic single level grouping. The schema can control the collapsibility of a group of properties with the following:</p>
 <ul>
+<li>Drupal configuration: Field group setting, Field Collecton Fieldset widget.</li>
 <li>
 <p>Schema:</p>
 <p><code>"options": {
-  "collapsed": true,
-  "disable_collapse": false
-}</code></p>
-</li>
-<li>
-<p>Drupal configuration: Field group setting, Field Collecton Fieldset widget.</p>
+      "collapsed": true,
+      "disable_collapse": false
+    }</code></p>
 </li>
 </ul>
 </li>
@@ -306,24 +304,20 @@ A schema property is determined to allow filtered text if the following is set:<
 <p>Form Grid Layout</p>
 <p>This provides the ability to display grid style form elements.</p>
 <ul>
-<li>
-<p>Global config: "admin/config/content/patternbuilder"</p>
-<ul>
+<li>Global config: "admin/config/content/patternbuilder"<ul>
 <li>Row class: The class for the row container in the grid layout.</li>
 <li>Column class prefix: The number of columns will be appended to the column class prefix. Example: "grid-columns-" results in "grid-columns-4".</li>
 </ul>
 </li>
+<li>Drupal configuration: Field instance setting.</li>
 <li>
 <p>Schema:</p>
 <p><code>"options": {
-  "grid_columns": 2
-},
-"items": {
-  "format": "grid"
-}</code></p>
-</li>
-<li>
-<p>Drupal configuration: Field instance setting.</p>
+      "grid_columns": 2
+    },
+    "items": {
+      "format": "grid"
+    }</code></p>
 </li>
 </ul>
 </li>
@@ -331,8 +325,8 @@ A schema property is determined to allow filtered text if the following is set:<
 <p>Paragraphs preview display view mode</p>
 <p>The importer can automatically setup up the "Paragraphs Editor Preview" view mode if the property is configured as "preview".  The importer has some default formatters for some common fields (text, image). Refer to the patternbuilder_importer.api.php for hooks that allow setting custom formatters for the preview view mode.</p>
 <ul>
-<li>Schema: <code>"options: { "preview": true }</code></li>
 <li>Drupal configuration: Field display view mode settings.</li>
+<li>Schema: <code>"options: { "preview": true }</code></li>
 </ul>
 </li>
 </ol>
