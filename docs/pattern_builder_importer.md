@@ -4,7 +4,7 @@ title: Pattern Builder Schema Importer Drupal Module
 
 ## Pattern Builder Schema Importer Drupal Module
 
-### TL;DR
+### What is it?
 
 It converts an library of JSON Schemas into Drupal paragraph bundles, and the JSON schema properties are converted into Drupal fields.
 
@@ -73,50 +73,49 @@ The schema used by Pattern Builder is based on [JSON Schema](http://json-schema.
 
 1. Hidden on the edit form
 
-    - Schema: `"options: { "hidden": true }`
     - Drupal configuration: Field instance setting.
+    - Schema: `"options: { "hidden": true }`
 
 1. Read-only on the edit form
 
-    - Schema: `"readonly": true `
     - Drupal configuration: Field instance setting.
+    - Schema: `"readonly": true `
 
 1. Non-imported properties:
 
     If a property does not need to be imported as a Drupal field, then it can be flagged to not import it with:
 
-    - Schema: `"options: { "import": false }`
     - Drupal configuration: None
+    - Schema: `"options: { "import": false }`
 
 1. Textarea
 
     Textareas are imported to a Drupal field type of "text_long". A schema property is consider to be a textarea if one of the following is true:
 
-    - Schema: `"format": "textarea"` OR `"format": "html"`
     - Drupal configuration: Field type.
+    - Schema: `"format": "textarea"` OR `"format": "html"`
 
 1. WYSIWYG / Filtered text
 
     Filter text in Drupal provides the user with the Input Format selector. These commonly are configured to use a WYSIWYG editor.
     A schema property is determined to allow filtered text if the following is set:
 
-    - Schema: `"format": "html"`
     - Drupal configuration: Field instance setting.
+    - Schema: `"format": "html"`
 
 1. Collapsible Field Groups and Field Collections
 
     The [field_group](https://www.drupal.org/project/field_group) module is required by the importer in order to provide basic single level grouping. The schema can control the collapsibility of a group of properties with the following:
 
+    - Drupal configuration: Field group setting, Field Collecton Fieldset widget.
     - Schema:
 
         ```
-        "options": {
-          "collapsed": true,
-          "disable_collapse": false
-        }
+            "options": {
+              "collapsed": true,
+              "disable_collapse": false
+            }
         ```
-
-    - Drupal configuration: Field group setting, Field Collecton Fieldset widget.
 
 1. Form Grid Layout
 
@@ -125,26 +124,24 @@ The schema used by Pattern Builder is based on [JSON Schema](http://json-schema.
     - Global config: "admin/config/content/patternbuilder"
         - Row class: The class for the row container in the grid layout.
         - Column class prefix: The number of columns will be appended to the column class prefix. Example: "grid-columns-" results in "grid-columns-4".
-
+    - Drupal configuration: Field instance setting.
     - Schema:
 
         ```
-        "options": {
-          "grid_columns": 2
-        },
-        "items": {
-          "format": "grid"
-        }
+            "options": {
+              "grid_columns": 2
+            },
+            "items": {
+              "format": "grid"
+            }
         ```
-
-    - Drupal configuration: Field instance setting.
 
 1. Paragraphs preview display view mode
 
     The importer can automatically setup up the "Paragraphs Editor Preview" view mode if the property is configured as "preview".  The importer has some default formatters for some common fields (text, image). Refer to the patternbuilder_importer.api.php for hooks that allow setting custom formatters for the preview view mode.
 
-    - Schema: `"options: { "preview": true }`
     - Drupal configuration: Field display view mode settings.
+    - Schema: `"options: { "preview": true }`
 
 
 ### Optional Drupal Extensions

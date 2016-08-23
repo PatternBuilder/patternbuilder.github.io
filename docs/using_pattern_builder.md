@@ -32,7 +32,7 @@ title: Using Pattern Builder
     1. Not good for complex field setups since hand mapping takes time and is error prone.
     1. How:
         1. Override the node view of a given content type.
-        1. Use the existing Drupal fields to build the render object using the PatternBuilder Library.
+        1. Use the existing Drupal fields to build the render object using the PatternBuilder Library. For more detail, see section ["PHP Library" > "Rendering a Schema"](pattern_builder_library.md#rendering-a-schema).
         1. Set the node view content as the rendered object.
 
 3. (TODO) Component library only, No importer

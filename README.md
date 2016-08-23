@@ -24,9 +24,9 @@ For full documentation visit [mkdocs.org](http://mkdocs.org).
 
 * Ensure mkdocs is installed. See above.
 * Checkout the latest *dev* branch.
-* From the commandline, run `make build`
-    - Downloads the latest files - Example: Pattern Kit's README.md.
+* From the commandline, run `make build` or `make build pkit=0`
     - Builds the site at "./site"
+    - If pkit is not provided OR pkit=1, then the latest Pattern Kit's README.md is downloaded to pattern_kit.md.
 
 ## Deploying the site
 
