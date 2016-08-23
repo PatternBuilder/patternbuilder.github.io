@@ -90,7 +90,7 @@ The Drupal Pattern Builder module automatically does all this through Drupal fie
             "minItems": 1,
             "items": {
                 "oneOf": [
-                    {"$ref": "card.json"},
+                    {"$ref": "card.json"}
                 ]
             }
         }
