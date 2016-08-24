@@ -26,22 +26,22 @@ title: Pattern Builder PHP Library
 
 ### Rendering a Schema
 
-The following details how to render an example JSON schema named "band".
+The following details how to render an example JSON schema named "awesome".
 
 The Drupal Pattern Builder module automatically does all this through Drupal field storage, field widgets, and field formatters.
 
-#### Example JSON Schema: band
+#### Example JSON Schema: awesome
 
 ```javascript
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Band",
-    "description": "A Band pattern",
+    "title": "Awesome",
+    "description": "An awesome pattern to highlight content.",
     "type": "object",
     "properties": {
         "name": {
           "type": "string",
-          "enum": ["band"],
+          "enum": ["awesome"],
           "options": {
             "hidden": true
           }
@@ -78,7 +78,7 @@ The Drupal Pattern Builder module automatically does all this through Drupal fie
               "items": {
                   "title": "Header Item",
                   "oneOf": [
-                      {"$ref": "band_header.json"}
+                      {"$ref": "awesome_header.json"}
                   ]
               }
             }
@@ -134,23 +134,23 @@ The Drupal Pattern Builder module automatically does all this through Drupal fie
 #### Set Schema Values
 
 ```php
-    // Load the band header schema and set values.
-    $band_header = $schema_factory->load('band_header')
-      ->set('title', 'My Awesome Band')
+    // Load the awesome header schema and set values.
+    $awesome_header = $schema_factory->load('awesome_header')
+      ->set('title', 'My Awesome Content')
       ->set('headline', 'New content, new markup, new everything!');
 
     // Create a card schema and set values.
     $card = $schema_factory->load('card')
-      ->set('title', 'Card 1')
+      ->set('title', 'Best Content Ever')
       ->set('background', array('color' => 'white'))
       ->set('image', array('src' => 'http://example.com/cool-image.jpg'));
 
-    // Load the band schema and set values.
-    $band = $schema_factory->load('band')
+    // Load the awesome pattern schema and set values.
+    $awesome = $schema_factory->load('awesome')
         ->set('background', array('color' => 'black'))
         ->set('header', array(
           'theme' => 'dark',
-          'content' => $band_header
+          'content' => $awesome_header
         ))
         ->set('content', $card);
 ```
@@ -161,6 +161,6 @@ The Drupal Pattern Builder module automatically does all this through Drupal fie
 
 
 ```php
-    // Render the entire band - all the nested schemas and their TWIG templates.
-    $band_markup = $band->render();
+    // Render the entire pattern - all the nested schemas and their TWIG templates.
+    $awesome_markup = $awesome->render();
 ```
