@@ -162,18 +162,18 @@
     The Drupal <a href="https://www.drupal.org/project/patternbuilder">Pattern Builder module</a> includes a composer.json with the library. The module is maintained to be compatible with library.</li>
 </ul>
 <h3 id="rendering-a-schema">Rendering a Schema</h3>
-<p>The following details how to render an example JSON schema named "band".</p>
+<p>The following details how to render an example JSON schema named "awesome".</p>
 <p>The Drupal Pattern Builder module automatically does all this through Drupal field storage, field widgets, and field formatters.</p>
-<h4 id="example-json-schema-band">Example JSON Schema: band</h4>
+<h4 id="example-json-schema-awesome">Example JSON Schema: awesome</h4>
 <pre><code class="javascript">{
     &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
-    &quot;title&quot;: &quot;Band&quot;,
-    &quot;description&quot;: &quot;A Band pattern&quot;,
+    &quot;title&quot;: &quot;Awesome&quot;,
+    &quot;description&quot;: &quot;An awesome pattern to highlight content.&quot;,
     &quot;type&quot;: &quot;object&quot;,
     &quot;properties&quot;: {
         &quot;name&quot;: {
           &quot;type&quot;: &quot;string&quot;,
-          &quot;enum&quot;: [&quot;band&quot;],
+          &quot;enum&quot;: [&quot;awesome&quot;],
           &quot;options&quot;: {
             &quot;hidden&quot;: true
           }
@@ -210,7 +210,7 @@
               &quot;items&quot;: {
                   &quot;title&quot;: &quot;Header Item&quot;,
                   &quot;oneOf&quot;: [
-                      {&quot;$ref&quot;: &quot;band_header.json&quot;}
+                      {&quot;$ref&quot;: &quot;awesome_header.json&quot;}
                   ]
               }
             }
@@ -257,31 +257,31 @@
 
 <hr />
 <h4 id="set-schema-values">Set Schema Values</h4>
-<pre><code class="php">    // Load the band header schema and set values.
-    $band_header = $schema_factory-&gt;load('band_header')
-      -&gt;set('title', 'My Awesome Band')
+<pre><code class="php">    // Load the awesome header schema and set values.
+    $awesome_header = $schema_factory-&gt;load('awesome_header')
+      -&gt;set('title', 'My Awesome Content')
       -&gt;set('headline', 'New content, new markup, new everything!');
 
     // Create a card schema and set values.
     $card = $schema_factory-&gt;load('card')
-      -&gt;set('title', 'Card 1')
+      -&gt;set('title', 'Best Content Ever')
       -&gt;set('background', array('color' =&gt; 'white'))
       -&gt;set('image', array('src' =&gt; 'http://example.com/cool-image.jpg'));
 
-    // Load the band schema and set values.
-    $band = $schema_factory-&gt;load('band')
+    // Load the awesome pattern schema and set values.
+    $awesome = $schema_factory-&gt;load('awesome')
         -&gt;set('background', array('color' =&gt; 'black'))
         -&gt;set('header', array(
           'theme' =&gt; 'dark',
-          'content' =&gt; $band_header
+          'content' =&gt; $awesome_header
         ))
         -&gt;set('content', $card);
 </code></pre>
 
 <hr />
 <h4 id="render-the-schema">Render the Schema</h4>
-<pre><code class="php">    // Render the entire band - all the nested schemas and their TWIG templates.
-    $band_markup = $band-&gt;render();
+<pre><code class="php">    // Render the entire pattern - all the nested schemas and their TWIG templates.
+    $awesome_markup = $awesome-&gt;render();
 </code></pre>
               
             </div>
