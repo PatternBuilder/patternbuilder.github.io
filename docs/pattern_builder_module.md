@@ -11,6 +11,9 @@ The Pattern Builder Module empowers your team to prototype in a static pattern l
 
 Need to update your design? No problem! Just update and QA the code in your pattern library and import those changes to Drupal in seconds.
 
+#### System Architecture
+![Pattern Builder Drupal System Architecture](media/patternbuilder-diagrams-top-level-20160826-3.png "Pattern Builder Drupal System Architecture")
+
 
 ### Why
 

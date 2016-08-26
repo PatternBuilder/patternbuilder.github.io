@@ -8,6 +8,9 @@ title: Pattern Builder Schema Importer Drupal Module
 
 It converts an library of JSON Schemas into Drupal paragraph bundles, and the JSON schema properties are converted into Drupal fields.
 
+#### System Architecture
+![Pattern Builder Drupal Importer Architecture](media/patternbuilder-diagrams-importer-20160826-1.png "Pattern Builder Drupal Importer Architecture")
+
 
 ### Why
 
