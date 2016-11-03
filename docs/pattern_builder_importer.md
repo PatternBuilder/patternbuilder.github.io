@@ -51,17 +51,17 @@ It converts an library of JSON Schemas into Drupal paragraph bundles, and the JS
 
 1. Drush Commands
     1. Imports patterns from defined library
-        - drush pbi : Import all schemas.
-        - drush pbi --all : Force the import of all schemas even if specific schemas are defined.
-        - drush pbi band card : Import only the "band" and "card" schemas.
-        - drush pbi --type=layout : Import only the schemas for the "layout" pattern type.
-        - drush pbi image_box
+        - `drush pbi` : Import all schemas.
+        - `drush pbi --all` : Force the import of all schemas even if specific schemas are defined.
+        - `drush pbi band card` : Import only the "band" and "card" schemas.
+        - `drush pbi --type=layout` : Import only the schemas for the "layout" pattern type.
+        - `drush pbi image_box` : Import only the image_box sub-pattern
 
     1. Remove imported patterns from Drupal
-        - drush pbi-remove  : Nothing is removed. This safeguards against accidental commands.
-        - drush pbi-remove --all : Removes all schemas.
-        - drush pbi-remove band card : Removes only the "band" and "card" schemas.
-        - drush pbi-remove --type=layout : Removes only the schemas for the "layout" pattern type.
+        - `drush pbi-remove` : Nothing is removed. This safeguards against accidental commands.
+        - `drush pbi-remove --all` : Removes all schemas.
+        - `drush pbi-remove band card` : Removes only the "band" and "card" schemas.
+        - `drush pbi-remove --type=layout` : Removes only the schemas for the "layout" pattern type.
 
 
 ### JSON Schema Support
@@ -171,7 +171,7 @@ The following are optional Drupal modules that are supported natively by the Pat
     1. Supports: array of objects imported as a field collection.
     1. Schema usage: "type": "array", "items": { Each item object definition }
 
-1. Field Collection Fieldset ([https://www.drupal.org/project/field_collection_fieldset](https://www.drupal.org/project/field_collection_fieldset))
+1. Field Collection Fieldset [https://www.drupal.org/project/field_collection_fieldset](https://www.drupal.org/project/field_collection_fieldset)
     1. Supports: collapsible array of objects imported to a field collection.
     1. Schema usage: "options": {"collapsed": true/false, "disable_collapse": true/false}
 
